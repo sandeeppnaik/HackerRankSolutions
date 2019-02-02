@@ -7,7 +7,31 @@ namespace Hackerrank
 {
     class Program
     {
-        #region Array Selection            
+        #region Array Selection   
+        static int minimumSwaps2(int[] arr) {
+
+            var lookups = arr.Select((value, index) => new { value, index })
+                      .ToDictionary(pair => pair.value, pair => pair.index);
+
+            var min = arr.Min();
+            var swaps = 0;
+            for(int i = 0; i < arr.Length; i++)
+            {
+                if(arr[i] != min + i)
+                {
+                    var position = lookups[min + i];
+                    var temp = arr[i];
+                    arr[i] = arr[position];
+                    arr[position] = temp;
+                    lookups[temp] = position;
+                    lookups[arr[i]] = i;
+                    swaps++;
+                }
+            }
+
+            return swaps;
+        }
+
         private static int recursiveMethod(int[] arr, int swaps)
         { 
             bool unsorted = true;
@@ -268,6 +292,7 @@ namespace Hackerrank
             // minimumBribes(new int[8]{1 ,2 ,5 ,3, 4, 7, 8, 6});
             // rotLeft(new int[5]{1, 2, 3, 4, 5},4);
             // repeatedString("ceebbcb",817723);
+            minimumSwaps2(new int[4]{4 ,3 ,1 ,2 });
         }
     }
 }
