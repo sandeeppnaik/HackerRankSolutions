@@ -48,7 +48,7 @@ namespace Hackerrank
 
         private static int CalculateCost(int source, int dest, int cost, DisjointSets grp )
         {
-            if(Find(grp,source,dest) || Find(grp, dest, source))
+            if(FindRoot(grp,source) == FindRoot(grp, dest))
                 return 0;
             else
             {
@@ -59,36 +59,34 @@ namespace Hackerrank
 
         private static void Join(ref DisjointSets grp, int source, int dest)
         {
-            if(grp.Rank[source] > grp.Rank[dest])
+            var x = FindRoot(grp,source);
+            var y = FindRoot(grp,dest);
+
+
+            if(grp.Rank[x] > grp.Rank[y])
             {
-                grp.Connections[dest] = source;
+                grp.Connections[y] = x;
             }
-            else if(grp.Rank[source] < grp.Rank[dest])
+            else if(grp.Rank[x] < grp.Rank[y])
             {
-                grp.Connections[source] = dest;
+                grp.Connections[x] = y;
             }
             else
             {
-                grp.Connections[source] = dest;
-                grp.Rank[dest]++;
+                grp.Connections[y] = x;
+                grp.Rank[x]++;
             }
         }
 
-        private static bool Find(DisjointSets grp, int source, int dest)
+        private static int FindRoot(DisjointSets grp, int vertex)
         {
-            if(grp.Connections[source] == grp.Connections[dest])
+            if(grp.Connections[vertex] == vertex)
             {
-                return true;
+                return vertex;
             }
-            else if(grp.Connections[source] == source)
-            {   
-                return false;
-            }
-            else if(grp.Connections[source] == dest)
-                return true;
             else
             {
-                return Find(grp, grp.Connections[source], dest);
+                return FindRoot(grp,grp.Connections[vertex]);
             }
         }
     }
