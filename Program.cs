@@ -101,6 +101,20 @@ namespace Hackerrank
 
         static void Main(string[] args)
         {
+
+
+            #region Queens Attack
+            var traps = new int[6][];
+            traps[0] = new int []{5,5};
+            traps[1] = new int []{4,2};
+            traps[2] = new int []{2,3};
+            traps[4] = new int []{4,3};
+            traps[5] = new int []{5,4};
+            traps[3] = new int []{2,5};
+
+            var pos = QAttackV2.queensAttack(5,5,2,1,traps);
+            #endregion
+
             #region FindShortestInput
             const int graphNodes = 4;
             var graphFrom = new int[3] { 1, 1, 4 };
