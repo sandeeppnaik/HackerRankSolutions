@@ -292,7 +292,20 @@ namespace Hackerrank
             // minimumBribes(new int[8]{1 ,2 ,5 ,3, 4, 7, 8, 6});
             // rotLeft(new int[5]{1, 2, 3, 4, 5},4);
             // repeatedString("ceebbcb",817723);
-            minimumSwaps2(new int[4]{4 ,3 ,1 ,2 });
+            // minimumSwaps2(new int[4]{4 ,3 ,1 ,2 });
+            // var result = new MaxNumberOfSubString().MaxNumOfSubstrings("cbadabdb"); //cbadabdb abbaccd adefaddaccc
+            // var result = new IntegerToWords().NumberToWords(50868);
+            // var result = new LongestSubSequence().LengthOfLIS(new int[]{10,9,2,5,3,7,101,18});
+
+            var input = new int[5][]{
+                new int[5]{1,2,2,3,5},
+                new int[5]{3,2,3,4,4},
+                new int[5]{2,4,5,3,1},
+                new int[5]{6,7,1,4,5},
+                new int[5]{5,1,1,2,4},
+            };
+            var result = new PacificAtlanticWaterFlow().PacificAtlantic(input);
+            
         }
     }
 }
